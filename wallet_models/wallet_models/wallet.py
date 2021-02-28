@@ -1,6 +1,6 @@
 from decimal import Decimal
-
-from django.contrib.auth.models import User
+from django.conf import settings
+# from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
@@ -10,7 +10,10 @@ from ..wallet_models.wallet_currency import WalletCurrency
 
 
 class Wallet(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE
+    )
     wallet = models.CharField(max_length=160)
     currency = models.ForeignKey(WalletCurrency, on_delete=models.CASCADE)
     balance = models.DecimalField(
