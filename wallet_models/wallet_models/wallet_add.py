@@ -8,7 +8,7 @@ from datetime_utils.date_time import DateTime
 from ..wallet_models.wallet import Wallet
 
 
-class WalletChange(models.Model):
+class WalletAdd(models.Model):
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     amount = models.DecimalField(
         max_digits=20,
@@ -25,7 +25,7 @@ class WalletChange(models.Model):
         return "{}".format(self.wallet)
 
 
-@receiver(post_save, sender=WalletChange)
+@receiver(post_save, sender=WalletAdd)
 def add(sender, instance, created, **kwargs):
     if created:
         wallet = Wallet.objects.get(id=instance.wallet.id)
@@ -34,7 +34,7 @@ def add(sender, instance, created, **kwargs):
         wallet.save()
 
 
-@receiver(pre_save, sender=WalletChange)
+@receiver(pre_save, sender=WalletAdd)
 def update(sender, instance, **kwargs):
     if instance.id is None:
         pass
@@ -43,13 +43,13 @@ def update(sender, instance, **kwargs):
             instance.updated_date = DateTime.datenow()
         wallet = Wallet.objects.get(id=instance.wallet.id)
         if wallet:
-            old_record = WalletChange.objects.get(id=instance.id)
+            old_record = WalletAdd.objects.get(id=instance.id)
             if old_record:
                 wallet.balance = wallet.balance - old_record.amount + instance.amount
         wallet.save()
 
 
-@receiver(post_delete, sender=WalletChange)
+@receiver(post_delete, sender=WalletAdd)
 def delete(sender, instance, using, **kwargs):
     wallet = Wallet.objects.get(id=instance.wallet.id)
     print(instance.id)

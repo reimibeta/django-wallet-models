@@ -8,7 +8,7 @@ from datetime_utils.date_time import DateTime
 from ..wallet_models.wallet import Wallet
 
 
-class WalletWithDraw(models.Model):
+class WalletWithdraw(models.Model):
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     amount = models.DecimalField(
         max_digits=20,
@@ -25,16 +25,16 @@ class WalletWithDraw(models.Model):
         return "{}".format(self.wallet)
 
 
-@receiver(post_save, sender=WalletWithDraw)
+@receiver(post_save, sender=WalletWithdraw)
 def add(sender, instance, created, **kwargs):
     if created:
         wallet = Wallet.objects.get(id=instance.wallet.id)
         if wallet:
-            wallet.balance = wallet.balance + instance.amount
+            wallet.balance = wallet.balance - instance.amount
         wallet.save()
 
 
-@receiver(pre_save, sender=WalletWithDraw)
+@receiver(pre_save, sender=WalletWithdraw)
 def update(sender, instance, **kwargs):
     if instance.id is None:
         pass
@@ -43,18 +43,18 @@ def update(sender, instance, **kwargs):
             instance.updated_date = DateTime.datenow()
         wallet = Wallet.objects.get(id=instance.wallet.id)
         if wallet:
-            old_record = WalletWithDraw.objects.get(id=instance.id)
+            old_record = WalletWithdraw.objects.get(id=instance.id)
             if old_record:
-                wallet.balance = wallet.balance - old_record.amount + instance.amount
+                wallet.balance = wallet.balance + old_record.amount - instance.amount
         wallet.save()
 
 
-@receiver(post_delete, sender=WalletWithDraw)
+@receiver(post_delete, sender=WalletWithdraw)
 def delete(sender, instance, using, **kwargs):
     wallet = Wallet.objects.get(id=instance.wallet.id)
     print(instance.id)
     if wallet:
         # old_record = Expense.objects.get(id=instance.id)
         # if old_record:
-        wallet.balance = wallet.balance - instance.amount
+        wallet.balance = wallet.balance + instance.amount
     wallet.save()

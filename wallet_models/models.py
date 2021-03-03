@@ -8,4 +8,4 @@ from .wallet_models.wallet_adjust import *
 from .wallet_models.wallet_currency import *
 
 # wallet change
-from .wallet_models.wallet_change import *
+from .wallet_models.wallet_add import *
