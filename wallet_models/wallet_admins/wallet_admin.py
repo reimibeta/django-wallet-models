@@ -3,11 +3,11 @@ from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDrop
 
 # wallet change
 from ..wallet_models.wallet import Wallet
-from ..wallet_models.wallet_add import WalletAdd
+from ..wallet_models.wallet_insert import WalletInsert
 from ..wallet_models.wallet_withdraw import WalletWithdraw
 
 
-class WalletAddAdmin(admin.ModelAdmin):
+class WalletInsertAdmin(admin.ModelAdmin):
     list_display = [
         'wallet',
         'amount',
@@ -43,7 +43,7 @@ class WalletAddAdmin(admin.ModelAdmin):
     #     return False
 
 
-admin.site.register(WalletAdd, WalletAddAdmin)
+admin.site.register(WalletInsert, WalletInsertAdmin)
 
 
 # wallet withdraw
