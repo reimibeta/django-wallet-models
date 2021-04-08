@@ -1,10 +1,12 @@
 from decimal import Decimal
 
 from django.db import models
-from django.db.models.signals import post_save, pre_save, post_delete
+from django.db.models.signals import post_save, pre_save, post_delete, pre_delete
 from django.dispatch import receiver
 
 from datetime_utils.date_time import DateTime
+
+from ..wallet_classes.wallet_management import WalletAccountOutlet
 from ..wallet_models.wallet import Wallet
 
 
@@ -28,10 +30,10 @@ class WalletWithdraw(models.Model):
 @receiver(post_save, sender=WalletWithdraw)
 def add(sender, instance, created, **kwargs):
     if created:
-        wallet = Wallet.objects.get(id=instance.wallet.id)
-        if wallet:
-            wallet.balance = wallet.balance - instance.amount
-        wallet.save()
+        WalletAccountOutlet.outlet_account(
+            instance.amount,
+            instance.wallet.id
+        )
 
 
 @receiver(pre_save, sender=WalletWithdraw)
@@ -41,20 +43,19 @@ def update(sender, instance, **kwargs):
     else:
         if instance.updated_date is None:
             instance.updated_date = DateTime.datenow()
-        wallet = Wallet.objects.get(id=instance.wallet.id)
-        if wallet:
-            old_record = WalletWithdraw.objects.get(id=instance.id)
-            if old_record:
-                wallet.balance = wallet.balance + old_record.amount - instance.amount
-        wallet.save()
+
+        old_value = WalletWithdraw.objects.get(id=instance.id)
+        WalletAccountOutlet.update_outlet_account(
+            instance.amount,
+            old_value.amount,
+            instance.wallet.id
+        )
 
 
-@receiver(post_delete, sender=WalletWithdraw)
+@receiver(pre_delete, sender=WalletWithdraw)
 def delete(sender, instance, using, **kwargs):
-    wallet = Wallet.objects.get(id=instance.wallet.id)
-    print(instance.id)
-    if wallet:
-        # old_record = Expense.objects.get(id=instance.id)
-        # if old_record:
-        wallet.balance = wallet.balance + instance.amount
-    wallet.save()
+    old_value = WalletWithdraw.objects.get(id=instance.id)
+    WalletAccountOutlet.refund_outlet_account(
+        old_value.amount,
+        old_value.wallet.id
+    )

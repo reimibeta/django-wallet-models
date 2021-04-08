@@ -30,21 +30,3 @@ def add(sender, instance, created, **kwargs):
         if wallet:
             wallet.balance = instance.amount
         wallet.save()
-
-# @receiver(pre_save, sender=WalletAdjust)
-# def update(sender, instance, **kwargs):
-#     if instance is None:
-#         pass
-#     else:
-#         if instance.created_date is None:
-#             instance.created_date = DateTime.datenow()
-#         # wallet
-#         wallet = Wallet.objects.get(id=instance.wallet.id)
-#         if wallet:
-#             wallet.balance = instance.amount
-#         wallet.save()
-
-
-# @receiver(post_delete, sender=OrderProduct)
-# def delete(sender, instance, using, **kwargs):
-#     pass

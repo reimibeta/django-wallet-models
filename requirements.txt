@@ -11,4 +11,4 @@ mysqlclient==2.0.3
 Pillow==8.2.0
 rest-framework-utils @ git+https://github.com/reimibeta/django-rest-framework-utils.git@edbbeade9a5226bdc787726a5b2bb1f07336471d
 stock-algorithms @ git+https://github.com/reimibeta/django-stock-utils.git@af1291decd5f2e2e0387a57186dff2335b026836
-user-models @ git+https://github.com/reimibeta/django-user-models.git@4cd2d01bb01d4da36817b712f1253b3eb0dd913a
+user-models @ git+https://github.com/reimibeta/django-user-models.git@4524b3d5e4c7ce30c572b363d4cbaa4359e24204

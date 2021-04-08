@@ -11,7 +11,7 @@ from ..wallet_models.wallet_currency import WalletCurrency
 
 class Wallet(models.Model):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, 
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
     wallet = models.CharField(max_length=160)
@@ -35,16 +35,6 @@ class Wallet(models.Model):
         return '{} ({})'.format(self.wallet, self.currency.currency)
 
 
-# @receiver(post_save, sender=OrderProduct)
-# def add(sender, instance, created, **kwargs):
-#     pass
-
-
-# @receiver(post_save, sender=OrderProduct)
-# def post_update(sender, instance, **kwargs):
-#     pass
-
-
 @receiver(pre_save, sender=Wallet)
 def update(sender, instance, **kwargs):
     if instance is None:
@@ -52,7 +42,3 @@ def update(sender, instance, **kwargs):
     else:
         if instance.updated_date is None:
             instance.updated_date = DateTime.datenow()
-
-# @receiver(post_delete, sender=OrderProduct)
-# def delete(sender, instance, using, **kwargs):
-#     pass
