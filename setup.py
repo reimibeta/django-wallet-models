@@ -11,7 +11,7 @@ import setuptools
 
 setuptools.setup(
     name='wallet_models',
-    version='1.0.4',
+    version='1.0.5',
     packages=setuptools.find_packages(),
     # scripts=['manage.py']
 )
