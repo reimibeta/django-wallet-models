@@ -28,3 +28,4 @@ media/photos/characters/
 # Dummy Files
 .DS_Store
 .idea/
+.vscode/settings.json
