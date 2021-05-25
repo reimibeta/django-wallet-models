@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django_admin_listfilter_dropdown.filters import DropdownFilter
 
-from ..wallet_models.wallet_currency import WalletCurrency
+from wallet_models.class_models.wallet_currency import WalletCurrency
 
 
 class WalletCurrencyAdmin(admin.ModelAdmin):

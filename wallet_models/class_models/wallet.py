@@ -6,7 +6,8 @@ from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 
 from datetime_utils.date_time import DateTime
-from ..wallet_models.wallet_currency import WalletCurrency
+
+from wallet_models.class_models.wallet_currency import WalletCurrency
 
 
 class Wallet(models.Model):

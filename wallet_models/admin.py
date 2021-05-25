@@ -1,5 +1,5 @@
 # wallet
-from .wallet_admins.wallet_admin import *
+from .class_admins.wallet_admin import *
 
 # wallet currency
-from .wallet_admins.wallet_currency import *
+from .class_admins.wallet_currency import *

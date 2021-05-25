@@ -1,10 +1,9 @@
 from django.contrib import admin
 from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter
 
-# wallet change
-from ..wallet_models.wallet import Wallet
-from ..wallet_models.wallet_insert import WalletInsert
-from ..wallet_models.wallet_withdraw import WalletWithdraw
+from wallet_models.class_models.wallet import Wallet
+from wallet_models.class_models.wallet_insert import WalletInsert
+from wallet_models.class_models.wallet_withdraw import WalletWithdraw
 
 
 class WalletInsertAdmin(admin.ModelAdmin):

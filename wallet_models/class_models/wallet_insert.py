@@ -6,8 +6,8 @@ from django.dispatch import receiver
 
 from datetime_utils.date_time import DateTime
 
-from ..wallet_classes.wallet_management import WalletAccountIncome
-from ..wallet_models.wallet import Wallet
+from wallet_models.class_models.wallet import Wallet
+from wallet_models.class_projects.wallet_income import WalletAccountIncome
 
 
 class WalletInsert(models.Model):
