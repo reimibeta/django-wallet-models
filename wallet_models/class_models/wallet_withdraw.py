@@ -1,13 +1,13 @@
 from decimal import Decimal
 
 from django.db import models
-from django.db.models.signals import post_save, pre_save, post_delete, pre_delete
+from django.db.models.signals import post_save, pre_save, pre_delete
 from django.dispatch import receiver
 
 from datetime_utils.date_time import DateTime
 
 from wallet_models.class_models.wallet import Wallet
-from wallet_models.class_projects.wallet_outlet import WalletAccountOutlet
+from wallet_models.class_projects.wallets.wallet_outlet import WalletAccountOutlet
 
 
 class WalletWithdraw(models.Model):
