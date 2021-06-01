@@ -11,7 +11,7 @@ import setuptools
 
 setuptools.setup(
     name='wallet_models',
-    version='1.1.2',
+    version='1.1.3',
     packages=setuptools.find_packages(),
     install_requires=[
         'datetime-utils @ git+https://github.com/reimibeta/django-datetime-utils.git',
