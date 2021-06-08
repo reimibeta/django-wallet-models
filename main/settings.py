@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     # django rest-framework
     'rest_framework',
     # user
-    'user_models.apps.UsersConfig',
+    'user_models.apps.UserConfig',
     # wallets
     'wallet_models.apps.WalletConfig',
     # revenues
