@@ -1,5 +1,5 @@
-from wallet_models.class_projects.balances.objects.object_base import SetObjectPk, SetObjectCondition
-from wallet_models.class_projects.balances.outlets.balance_outlet import BalanceOutlet
+from wallet_models.class_apps.balances.objects.object_base import SetObjectPk, SetObjectCondition
+from wallet_models.class_apps.balances.outlets.balance_outlet import BalanceOutlet
 
 
 class BalanceOutletCondition(SetObjectPk, SetObjectCondition):

@@ -1,4 +1,4 @@
-from wallet_models.class_projects.wallets.wallet_income import WalletAccountIncome
+from wallet_models.class_apps.wallets.wallet_income import WalletAccountIncome
 
 
 class BalanceIncome:

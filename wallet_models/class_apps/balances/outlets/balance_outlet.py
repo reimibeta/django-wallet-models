@@ -1,4 +1,4 @@
-from wallet_models.class_projects.wallets.wallet_outlet import WalletAccountOutlet
+from wallet_models.class_apps.wallets.wallet_outlet import WalletAccountOutlet
 
 
 class BalanceOutlet:
