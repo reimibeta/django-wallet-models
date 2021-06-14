@@ -21,11 +21,15 @@ class BalanceOutletManagement:
         return self
 
     def outlet(self, current_amount):
+        if not self.condition:
+            raise ValueError('Condition must not none.')
         balance_outlet_condition.set_current_pk(self.queryset.account.id)
         balance_outlet_condition.set_current_condition(self.condition)
         balance_outlet_condition.outlet_account(current_amount)
 
     def update(self, current_amount, last_amount):
+        if not self.condition:
+            raise ValueError('Condition must not none.')
         balance_outlet_condition.set_current_pk(self.queryset.account.id)
         balance_outlet_condition.set_current_condition(self.condition)
         balance_outlet_condition.set_last_pk(self.last_queryset.account.id)
@@ -36,6 +40,8 @@ class BalanceOutletManagement:
         )
 
     def refund(self, last_amount):
+        if not self.condition:
+            raise ValueError('Condition must not none.')
         balance_outlet_condition.set_last_condition(self.condition)
         balance_outlet_condition.set_last_pk(self.last_queryset.account.id)
         balance_outlet_condition.refund_outlet_account(last_amount=last_amount)
