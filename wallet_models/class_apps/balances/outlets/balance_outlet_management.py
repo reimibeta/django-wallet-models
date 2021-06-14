@@ -2,18 +2,23 @@ from wallet_models.class_apps.balances.outlets.balance_outlet_condition import b
 
 
 class BalanceOutletManagement:
-
     # def __init__(self, condition):
     #     self.condition = condition
+    condition = False
+    queryset = None
+    last_queryset = None
 
     def set_condition(self, condition):
         self.condition = condition
+        return self.condition
 
     def set_queryset(self, queryset):
         self.queryset = queryset
+        return self.queryset
 
     def set_last_queryset(self, last_queryset):
         self.last_queryset = last_queryset
+        return last_queryset
 
     def outlet(self, current_amount):
         balance_outlet_condition.set_current_pk(self.queryset.account.id)
