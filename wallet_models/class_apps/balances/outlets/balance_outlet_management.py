@@ -4,7 +4,7 @@ from wallet_models.class_apps.balances.outlets.balance_outlet_condition import b
 class BalanceOutletManagement:
     # def __init__(self, condition):
     #     self.condition = condition
-    condition = False
+    condition = None
     queryset = None
     last_queryset = None
 
