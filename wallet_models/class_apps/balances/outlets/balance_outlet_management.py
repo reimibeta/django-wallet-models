@@ -9,11 +9,15 @@ class BalanceOutletManagement:
     def set_condition(self, condition):
         self.condition = condition
 
-        
+    def set_queryset(self, queryset):
+        self.queryset = queryset
 
-    def outlet(self, current_instance, current_amount):
-        balance_outlet_condition.set_current_pk(current_instance.account.id)
-        balance_outlet_condition.set_current_condition(current_instance.is_return)
+    def set_last_queryset(self, last_queryset):
+        self.last_queryset = last_queryset
+
+    def outlet(self, current_amount):
+        balance_outlet_condition.set_current_pk(self.queryset.account.id)
+        balance_outlet_condition.set_current_condition(self.condition)
         balance_outlet_condition.outlet_account(current_amount)
 
     def update(self, current_instance, last_instance, current_amount, last_amount):
@@ -30,6 +34,5 @@ class BalanceOutletManagement:
         balance_outlet_condition.set_last_condition(last_instance.is_return)
         balance_outlet_condition.set_last_pk(last_instance.account.id)
         balance_outlet_condition.refund_outlet_account(last_amount=last_amount)
-
 
 # balance_outlet_management = BalanceOutletManagement()
