@@ -1,5 +1,5 @@
 from wallet_models.class_apps.balances.outlets.balance_outlet_condition import balance_outlet_condition
-
+# deletable
 
 class BalanceOutletManagement:
     # def __init__(self, condition):
