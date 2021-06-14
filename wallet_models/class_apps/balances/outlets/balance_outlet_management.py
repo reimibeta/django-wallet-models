@@ -10,15 +10,15 @@ class BalanceOutletManagement:
 
     def set_condition(self, condition):
         self.condition = condition
-        return self.condition
+        return self
 
     def set_queryset(self, queryset):
         self.queryset = queryset
-        return self.queryset
+        return self
 
     def set_last_queryset(self, last_queryset):
         self.last_queryset = last_queryset
-        return last_queryset
+        return self
 
     def outlet(self, current_amount):
         balance_outlet_condition.set_current_pk(self.queryset.account.id)
