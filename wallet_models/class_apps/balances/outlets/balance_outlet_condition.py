@@ -1,12 +1,14 @@
 from wallet_models.class_apps.balances.objects.object_base import SetObjectPk, SetObjectCondition
-from wallet_models.class_apps.balances.outlets.balance_outlet import BalanceOutlet
+# from wallet_models.class_apps.balances.outlets.balance_outlet import BalanceOutlet
+from wallet_models.class_apps.wallets.wallet_outlet import WalletAccountOutlet
 
 
 class BalanceOutletCondition(SetObjectPk, SetObjectCondition):
 
     def outlet_account(self, current_amount):
         if self.current_condition:
-            BalanceOutlet.outlet(current_amount, self.current_pk)
+            # BalanceOutlet.outlet(current_amount, self.current_pk)
+            WalletAccountOutlet.outlet_account(current_amount, self.current_pk)
 
     # update
     def _update_outlet_account_same_pk(self, current_amount, last_amount):
