@@ -1,11 +1,11 @@
 class CurrentInstance:
-    current_condition = None
+    current_condition = False
     current_instance = None
     current_amount = None
 
     def __init__(
             self,
-            current_condition=None,
+            current_condition=False,
             current_instance=None,
             current_amount=None
     ):
@@ -15,13 +15,13 @@ class CurrentInstance:
 
 
 class LastInstance:
-    last_condition = None
+    last_condition = False
     last_instance = None
     last_amount = None
 
     def __init__(
             self,
-            last_condition=None,
+            last_condition=False,
             last_instance=None,
             last_amount=None
     ):
