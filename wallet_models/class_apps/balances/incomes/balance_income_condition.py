@@ -1,44 +1,45 @@
-from wallet_models.class_apps.balances.incomes.balance_income import BalanceIncome
+# from wallet_models.class_apps.balances.incomes.balance_income import BalanceIncome
 from wallet_models.class_apps.balances.objects.object_base import SetObjectPk, SetObjectCondition
+from wallet_models.class_apps.wallets.wallet_income import WalletAccountIncome
 
 
 class BalanceIncomeCondition(SetObjectPk, SetObjectCondition):
 
     def income_account(self, current_amount):
         if self.current_condition:
-            BalanceIncome.income(current_amount, self.current_pk)
+            WalletAccountIncome.income_account(current_amount, self.current_pk)
 
     # update
     def _update_income_account_same_pk(self, current_amount, last_amount):
         if self.current_condition:
             if self.last_condition:
-                BalanceIncome.update(
+                WalletAccountIncome.update_income_account(
                     current_amount, last_amount,
                     self.current_pk
                 )
                 # print("update amount")
             else:
-                BalanceIncome.income(
+                WalletAccountIncome.income_account(
                     current_amount,
                     self.current_pk
                 )
         else:
             if self.last_condition:
-                BalanceIncome.refund(last_amount, self.last_pk)
+                WalletAccountIncome.return_income_account(last_amount, self.last_pk)
 
     def _update_income_account_different_pk(self, current_amount, last_amount):
         if self.current_condition:
             if self.last_condition:
                 # return stock
-                BalanceIncome.refund(last_amount, self.last_pk)
+                WalletAccountIncome.return_income_account(last_amount, self.last_pk)
                 # add new stock
-                BalanceIncome.income(current_amount, self.current_pk)
+                WalletAccountIncome.income_account(current_amount, self.current_pk)
                 print('update not workings')
             else:
-                BalanceIncome.income(current_amount, self.current_pk)
+                WalletAccountIncome.income_account(current_amount, self.current_pk)
         else:
             if self.last_condition:
-                BalanceIncome.refund(last_amount, self.last_pk)
+                WalletAccountIncome.return_income_account(last_amount, self.last_pk)
 
     def update_income_account(self, current_amount, last_amount):
         if self.current_pk == self.last_pk:
@@ -54,7 +55,7 @@ class BalanceIncomeCondition(SetObjectPk, SetObjectCondition):
 
     def refund_income_account(self, last_amount):
         if self.last_condition:
-            BalanceIncome.refund(last_amount, self.last_pk)
+            WalletAccountIncome.return_income_account(last_amount, self.last_pk)
 
 
 balance_income_condition = BalanceIncomeCondition()
