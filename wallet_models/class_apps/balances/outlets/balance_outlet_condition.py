@@ -14,33 +14,46 @@ class BalanceOutletCondition(SetObjectPk, SetObjectCondition):
     def _update_outlet_account_same_pk(self, current_amount, last_amount):
         if self.current_condition:
             if self.last_condition:
-                BalanceOutlet.update(
+                # BalanceOutlet.update(
+                #     current_amount, last_amount,
+                #     self.current_pk
+                # )
+                WalletAccountOutlet.update_outlet_account(
                     current_amount, last_amount,
                     self.current_pk
                 )
                 # print("update amount")
             else:
-                BalanceOutlet.outlet(
+                # BalanceOutlet.outlet(
+                #     current_amount,
+                #     self.current_pk
+                # )
+                WalletAccountOutlet.outlet_account(
                     current_amount,
                     self.current_pk
                 )
         else:
             if self.last_condition:
-                BalanceOutlet.refund(last_amount, self.last_pk)
+                # BalanceOutlet.refund(last_amount, self.last_pk)
+                WalletAccountOutlet.refund_outlet_account(last_amount, self.last_pk)
 
     def _update_outlet_account_different_pk(self, current_amount, last_amount):
         if self.current_condition:
             if self.last_condition:
                 # return stock
-                BalanceOutlet.refund(last_amount, self.last_pk)
+                # BalanceOutlet.refund(last_amount, self.last_pk)
+                WalletAccountOutlet.refund_outlet_account(last_amount, self.last_pk)
                 # add new stock
-                BalanceOutlet.outlet(current_amount, self.current_pk)
+                # BalanceOutlet.outlet(current_amount, self.current_pk)
+                WalletAccountOutlet.outlet_account(current_amount, self.current_pk)
                 print('update not workings')
             else:
-                BalanceOutlet.outlet(current_amount, self.current_pk)
+                # BalanceOutlet.outlet(current_amount, self.current_pk)
+                WalletAccountOutlet.outlet_account(current_amount, self.current_pk)
         else:
             if self.last_condition:
-                BalanceOutlet.refund(last_amount, self.last_pk)
+                # BalanceOutlet.refund(last_amount, self.last_pk)
+                WalletAccountOutlet.refund_outlet_account(last_amount, self.last_pk)
 
     def update_outlet_account(self, current_amount, last_amount):
         if self.current_pk == self.last_pk:
@@ -56,7 +69,8 @@ class BalanceOutletCondition(SetObjectPk, SetObjectCondition):
 
     def refund_outlet_account(self, last_amount):
         if self.last_condition:
-            BalanceOutlet.refund(last_amount, self.last_pk)
+            # BalanceOutlet.refund(last_amount, self.last_pk)
+            WalletAccountOutlet.refund_outlet_account(last_amount, self.last_pk)
 
 
 balance_outlet_condition = BalanceOutletCondition()
