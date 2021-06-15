@@ -22,8 +22,8 @@ class BalanceOutlet(CurrentInstance):
         balance_outlet_condition.set_current_pk(
             self.current_instance.account.id
         )
-        if not self.current_condition:
-            raise ValueError('Current condition must set.')
+        # if not self.current_condition:
+        #     raise ValueError('Current condition must set.')
         balance_outlet_condition.set_current_condition(
             self.current_condition
         )
@@ -50,8 +50,8 @@ class BalanceRefund(LastInstance):
         )
 
     def refund(self):
-        if not self.last_condition:
-            raise ValueError('Last condition must set.')
+        # if not self.last_condition:
+        #     raise ValueError('Last condition must set.')
         balance_outlet_condition.set_last_condition(self.last_condition)
         if not self.last_instance:
             raise ValueError('Last instance must set.')
@@ -91,14 +91,14 @@ class BalanceUpdate(CurrentInstance, LastInstance):
         if not self.current_amount:
             raise ValueError('Current amount must set.')
         balance_outlet_condition.set_current_pk(self.current_instance.account.id)
-        if not self.current_condition:
-            raise ValueError('Current condition must set.')
+        # if not self.current_condition:
+        #     raise ValueError('Current condition must set.')
         balance_outlet_condition.set_current_condition(self.current_condition)
         if not self.last_instance:
             raise ValueError('Last instance must set.')
         balance_outlet_condition.set_last_pk(self.last_instance.account.id)
-        if not self.last_condition:
-            raise ValueError('Last condition must set.')
+        # if not self.last_condition:
+        #     raise ValueError('Last condition must set.')
         balance_outlet_condition.set_last_condition(self.last_condition)
         if not self.current_amount and self.last_amount:
             raise ValueError('Current amount and last amount must set.')
