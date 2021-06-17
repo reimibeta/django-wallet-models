@@ -5,7 +5,7 @@ from django.db import models
 from django.db.models.signals import pre_save, post_save, post_delete
 from django.dispatch import receiver
 
-from datetime_utils.date_time import DateTime
+from django_datetime.date_time import datetime
 
 from wallet_models.class_models.wallet_currency import WalletCurrency
 
@@ -24,7 +24,7 @@ class Wallet(models.Model):
         blank=True,
         null=True
     )
-    created_date = models.DateField(default=DateTime.datenow)
+    created_date = models.DateField(default=datetime.dnow())
     updated_date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -42,4 +42,4 @@ def update(sender, instance, **kwargs):
         pass
     else:
         if instance.updated_date is None:
-            instance.updated_date = DateTime.datenow()
+            instance.updated_date = datetime.dnow()

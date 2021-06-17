@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models.signals import post_save, pre_save, pre_delete
 from django.dispatch import receiver
 
-from datetime_utils.date_time import DateTime
+from django_datetime.date_time import datetime
 
 from wallet_models.class_models.wallet import Wallet
 from wallet_models.class_apps.wallets.wallet_outlet import WalletAccountOutlet
@@ -20,7 +20,7 @@ class WalletWithdraw(models.Model):
         null=True
     )
     note = models.CharField(max_length=250, blank=True, null=True)
-    created_date = models.DateField(default=DateTime.datenow)
+    created_date = models.DateField(default=datetime.dnow())
     updated_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
@@ -42,7 +42,7 @@ def update(sender, instance, **kwargs):
         pass
     else:
         if instance.updated_date is None:
-            instance.updated_date = DateTime.datenow()
+            instance.updated_date = datetime.dnow()
 
         old_value = WalletWithdraw.objects.get(id=instance.id)
         WalletAccountOutlet.update_outlet_account(
