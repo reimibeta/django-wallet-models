@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models.signals import post_save, pre_save, pre_delete
 from django.dispatch import receiver
 
-from django_datetime.date_time import datetime
+from django_datetime.datetime import datetime
 
 from wallet_models.class_models.wallet import Wallet
 from wallet_models.class_apps.wallets.wallet_outlet import WalletAccountOutlet
