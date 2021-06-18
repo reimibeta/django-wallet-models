@@ -6,8 +6,8 @@ djangorestframework-simplejwt==4.7.0
 drf-flex-fields==0.9.0
 mysqlclient==2.0.3
 Pillow==8.2.0
-user-models @ git+https://github.com/reimibeta/django-user-models.git@3f067bfc2119e28efaf1412b64fc9189856f4119
-django-datetime @ git+https://github.com/reimibeta/django-datetime.git@d296be9078c47baa763d0732b5cd56f1962bc50f
+user-models @ git+https://github.com/reimibeta/django-user-models.git@37fa3b274e692299d8aa54f4e4ba882f94924da6
+django-datetime @ git+https://github.com/reimibeta/django-datetime.git@1c93aba8fdb7687dab1d0cc60c6f78c51b38ea3c
 django-html-render @ git+https://github.com/reimibeta/django-html-render.git@03de9608e80fd65bdbce4dbfa6dd7b5f555895a0
 django-image @ git+https://github.com/reimibeta/django-image.git@ddfe248768f935947e61f4b8be17deaf64b6a09d
 django-rest-framework @ git+https://github.com/reimibeta/django-rest-framework.git@503852d3fda3717b0de0932a216d27caa668e743
