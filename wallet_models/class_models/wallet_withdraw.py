@@ -42,7 +42,7 @@ def update(sender, instance, **kwargs):
         pass
     else:
         if instance.updated_date is None:
-            instance.updated_date = datetime.dnow()
+            instance.updated_date = datetime.dnow(str=True)
 
         old_value = WalletWithdraw.objects.get(id=instance.id)
         WalletAccountOutlet.update_outlet_account(
